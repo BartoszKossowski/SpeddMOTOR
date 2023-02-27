@@ -17,4 +17,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = ""
+"Homepage" = "https://github.com/BartoszKossowski/SpeddMOTOR"
+"Bug Tracker" = "https://github.com/BartoszKossowski/SpeddMOTOR/issues"
