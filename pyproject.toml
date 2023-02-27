@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "speedMOTOR"
+version = "1.0"
+authors = [
+    { name="Bartosz Kossowski", email="bartosz.kossowski@protonmail.com" },]
+description = "Biblioteka do ustawiania prędkości obrotowej wirnika silnika, przy wykorzystaniu kilku wartości okresowych (RPM, Hz, ...)"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = ""
