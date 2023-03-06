@@ -23,7 +23,6 @@ Dodatkowo z dodatkowymi danymi:
 
 """
 
-import time
 from datetime import datetime
 from typing import Literal, get_args
 
@@ -55,10 +54,13 @@ class nfs:
         if Hz:
             self.mode = "Hz"
 
+    def __next__(self):
+        pass
+
     def show(self):
         print(f"Wartość: {self.value} | Jednostka: {self.mode}")
 
-    def turnover(self, duration: _DURATION = "infinity", duration_time=None, _DURATION=_DURATION):
+    def turnover(self, duration: _DURATION = "infinity", duration_time=None, execute=None, _DURATION=_DURATION):
         """
         Przeliczamy wartość na ilość impulsów.
 
@@ -154,13 +156,19 @@ class nfs:
                             score = time_RPS - abs(actual_microsecond - 1000)
                             if current_microseconds > score:
                                 actual_microsecond = current_microseconds
+                                if execute is not None:
+                                    execute()
                                 R += 1
+                                nfs.__next__(self)
                                 break
 
                     if float(current_microseconds - actual_microsecond) > time_RPS:
                         # print("Zwiększamy")
                         # print(90*"=")
                         actual_microsecond += time_RPS
+                        if execute is not None:
+                            execute()
+                        nfs.__next__(self)
                         R += 1
 
                     """
@@ -200,17 +208,6 @@ class nfs:
                 print(datetime.now().microsecond)
 
 
-# list = [60, 100, 150, 200, 400, 600, 1000, 1500, 2000, 5000, 8000, 10000]
-# for rpm in list:
-#     print(90 * "=")
-#     print(f"Powinno być: {(rpm/60) * 10}")
-#     a = nfs(value=rpm, RPM=True)
-#     for x in range(3):
-#         a.turnover("seconds", duration_time=10)
+# a = nfs(value=600, RPM=True)
 #
-
-
-a = nfs(value=5000000, RPM=True)
-a.turnover("minutes", duration_time=1)
-
-
+# a.turnover("minutes", duration_time=1)
